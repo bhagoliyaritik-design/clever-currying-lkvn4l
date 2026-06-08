@@ -1,0 +1,110 @@
+body {
+  background: linear-gradient(110deg, #4158d0 0%, #43e97b 100%);
+  color: #fff;
+  font-family: "Poppins", Arial, sans-serif;
+}
+.App {
+  background: rgba(34, 34, 34, 0.96);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px #24286d34;
+  padding: 28px 18px 22px 18px;
+}
+
+h2,
+h3,
+h4 {
+  letter-spacing: 1px;
+  margin: 10px 0;
+}
+.inputs {
+  margin-bottom: 16px;
+}
+.inputs div {
+  margin: 7px 0;
+  font-size: 15px;
+}
+input,
+select {
+  margin-left: 8px;
+  border: none;
+  border-radius: 7px;
+  background: #fff9;
+  color: #242;
+  padding: 3px 8px;
+  outline: none;
+  font-size: 15px;
+}
+
+.markbtn {
+  background: linear-gradient(80deg, #43e97b 30%, #38f9d7 100%);
+  color: #23262f;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  border-radius: 12px;
+  padding: 9px 36px;
+  box-shadow: 0 1px 8px #54ef8b99;
+  margin-bottom: 9px;
+  margin-top: 3px;
+}
+
+.section-box {
+  background: #201f35bb;
+  border-radius: 13px;
+  padding: 13px 10px 8px 10px;
+  margin: 18px 0;
+  box-shadow: 0 1px 9px #35355318;
+}
+ul {
+  text-align: left;
+  margin-top: 12px;
+  padding-left: 17px;
+  font-size: 14px;
+}
+.footnote {
+  text-align: center;
+  font-size: 13px;
+  margin: 18px 2px 2px 2px;
+  color: #b2fcfa;
+  background: #222a;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-weight: 400;
+  letter-spacing: 0.4px;
+}
+
+/* Calendar highlights */
+.calendar-day-marked {
+  background: #54ef8b !important;
+  color: #1d1b32 !important;
+  border-radius: 50% !important;
+  font-weight: bold;
+  border: 1.5px solid #23262f !important;
+}
+.react-calendar {
+  background: #23263a !important;
+  color: #fff !important;
+  border-radius: 13px !important;
+  border: none !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+.react-calendar__navigation button {
+  color: #a9d2f7 !important;
+}
+.react-calendar__tile--now {
+  background: #ffde76 !important;
+  color: #222 !important;
+  border-radius: 50% !important;
+}
+.calendar-popup {
+  margin: 8px 0 0 0;
+  background: #fff5;
+  color: #181e2b;
+  border-radius: 10px;
+  font-size: 15px;
+  padding: 4px 0 5px 0;
+}
+.calendar-bg {
+  background: #152e42d3;
+}
