@@ -1,0 +1,22 @@
+{
+  "name": "Pro Streak Routine Tracker",
+  "short_name": "Mast Tracker",
+  "description": "Track your streaks, routine and progress with modern style!",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#141e30",
+  "theme_color": "#43e97b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
