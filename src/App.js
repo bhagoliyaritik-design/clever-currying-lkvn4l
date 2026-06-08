@@ -19,6 +19,10 @@ import "react-calendar/dist/Calendar.css";
 
 const STORAGE_KEY = "pro-streak-routine-tracker-data";
 
+// --------- LOGIN STATE
+const CORRECT_USER = "ritikcoderox";
+const CORRECT_PASS = "68000";
+
 function getDateKey(date = new Date()) {
   return date.toISOString().split("T")[0]; // YYYY-MM-DD
 }
@@ -28,6 +32,13 @@ function showDate(dateKey) {
 }
 
 export default function App() {
+  // -------- LOGIN STATES
+  const [locked, setLocked] = useState(
+    localStorage.getItem("myapp_login_ok") !== "YES"
+  );
+  const [uname, setUname] = useState("");
+  const [upass, setUpass] = useState("");
+
   const [days, setDays] = useState(() => {
     const saved = localStorage.getItem(STORAGE_KEY);
     return saved ? JSON.parse(saved) : [];
@@ -48,7 +59,6 @@ export default function App() {
 
   function markToday() {
     if (todayDone) return;
-
     const newEntry = {
       dateKey: todayKey,
       wakeUp,
@@ -56,7 +66,6 @@ export default function App() {
       mood,
       note,
     };
-
     setDays([...days, newEntry]);
 
     setWakeUp("");
@@ -84,8 +93,137 @@ export default function App() {
     }
   }
 
+  // -------------- LOGIN FUNCTIONALITY:
+  if (locked) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "linear-gradient(110deg,#2c5364, #43e97b)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: 16,
+        }}
+      >
+        <div
+          style={{
+            background: "#23243b",
+            padding: "36px 18px 22px",
+            borderRadius: 20,
+            boxShadow: "0 0 24px #222a",
+            minWidth: 270,
+          }}
+        >
+          <h2 style={{ color: "#43e97b", marginBottom: 18, letterSpacing: 1 }}>
+            🔒 App Login
+          </h2>
+
+          <input
+            type="text"
+            placeholder="Username"
+            value={uname}
+            autoFocus
+            onChange={(e) => setUname(e.target.value)}
+            style={{
+              padding: "10px",
+              fontSize: 16,
+              border: "1px solid #43e97b",
+              borderRadius: 8,
+              width: "100%",
+              marginBottom: 10,
+              boxSizing: "border-box",
+              background: "#141e30",
+              color: "#fff",
+            }}
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            value={upass}
+            onChange={(e) => setUpass(e.target.value)}
+            style={{
+              padding: "10px",
+              fontSize: 16,
+              border: "1px solid #43e97b",
+              borderRadius: 8,
+              width: "100%",
+              marginBottom: 14,
+              boxSizing: "border-box",
+              background: "#141e30",
+              color: "#fff",
+            }}
+          />
+
+          <button
+            onClick={() => {
+              if (uname === CORRECT_USER && upass === CORRECT_PASS) {
+                localStorage.setItem("myapp_login_ok", "YES");
+                setLocked(false);
+                setUname("");
+                setUpass("");
+              } else {
+                alert("Galat Username/Password! Try again.");
+                setUpass("");
+              }
+            }}
+            style={{
+              background: "#43e97b",
+              color: "#23243b",
+              padding: "10px 26px",
+              borderRadius: 10,
+              border: "none",
+              fontWeight: 800,
+              fontSize: 16,
+              width: "100%",
+              cursor: "pointer",
+              boxShadow: "0 1px 8px #43e97b44",
+            }}
+          >
+            Login
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // --------------- LOGOUT BUTTON code
+
   return (
-    <div className="App" style={{ maxWidth: 420, margin: "22px auto" }}>
+    <div
+      className="App"
+      style={{
+        maxWidth: 420,
+        margin: "22px auto",
+        position: "relative",
+      }}
+    >
+      {/* Logout button */}
+      <button
+        onClick={() => {
+          localStorage.removeItem("myapp_login_ok");
+          window.location.reload();
+        }}
+        style={{
+          position: "absolute",
+          top: 16,
+          right: 18,
+          background: "#ff4d6d",
+          color: "#fff",
+          border: "none",
+          borderRadius: 9,
+          padding: "7px 18px",
+          fontWeight: 700,
+          fontSize: 15,
+          cursor: "pointer",
+          zIndex: 99,
+        }}
+      >
+        Logout
+      </button>
+
       <h2
         style={{
           background: "linear-gradient(90deg,#00f2fe 40%,#4facfe 100%)",
@@ -105,7 +243,6 @@ export default function App() {
             onChange={(e) => setWakeUp(e.target.value)}
           />
         </div>
-
         <div>
           <label>Lectures Kitne kiye?</label>
           <input
@@ -116,7 +253,6 @@ export default function App() {
             onChange={(e) => setLectures(e.target.value)}
           />
         </div>
-
         <div>
           <label>Mood:</label>
           <select value={mood} onChange={(e) => setMood(e.target.value)}>
@@ -126,7 +262,6 @@ export default function App() {
             <option value="😖">😖 Low</option>
           </select>
         </div>
-
         <div>
           <label>Notes:</label>
           <input
@@ -145,7 +280,6 @@ export default function App() {
 
       <div className="section-box">
         <h3>🔥 Streak: {days.length} Days</h3>
-
         {days.length === 0 ? (
           <p>Abhi koi entry nahi hai.</p>
         ) : (
@@ -166,7 +300,6 @@ export default function App() {
 
       <div className="section-box">
         <h4>Last 7 Days Progress (Lectures)</h4>
-
         <Bar
           data={{
             labels: days.slice(-7).map((d) => showDate(d.dateKey)),
