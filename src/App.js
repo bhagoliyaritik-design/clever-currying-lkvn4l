@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
+import { Analytics } from "@vercel/analytics/react";
 
 // Chart import
 import { Bar } from "react-chartjs-2";
@@ -381,6 +382,7 @@ export default function App() {
       <div className="footnote">
         <b>Saved:</b> Data ab browser me save rahega ✅
       </div>
+      <Analytics />
     </div>
   );
 }
